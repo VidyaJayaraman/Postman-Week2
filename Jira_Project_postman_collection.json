@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "32bad65c-47ed-4052-8d44-23e9bcc9ad31",
+		"name": "Jira Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24504882"
+	},
+	"item": [
+		{
+			"name": "TC01_Jira_Create_Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Get the complete Json response\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"});\r",
+							"Resp = pm.response.json();\r",
+							"\r",
+							"//Use the Json path to get the value and save it to Sysidd\r",
+							"IncId = Resp.id;\r",
+							"\r",
+							"//pm.globals.set(\"G_IncId\",Resp.result.sys_id);\r",
+							"//Save it to the Global variable\r",
+							"pm.globals.set(\"G_IncId\",IncId);\r",
+							"\r",
+							"//To display incident Id in console\r",
+							"console.log(\"IncId : \",pm.globals.get(\"G_IncId\"));\r",
+							"\r",
+							"// Assertion - Positive scenario\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Assertions - Failed Tests\r",
+							"\r",
+							"//pm.test(\"Successful POST request\", function () {\r",
+							"// pm.expect(pm.response.code).to.be.oneOf([400,401,402,403]);\r",
+							"//});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"fields\": {\r\n\r\n    \"project\":\r\n\r\n                {\r\n\r\n                    \"key\": \"JIR\"\r\n\r\n                },\r\n\r\n    \"summary\": \"create issue in RA project\",\r\n\r\n    \"description\": \"Creating of an issue using project keys and issue type names using the REST API\",\r\n\r\n    \"issuetype\": {\r\n\r\n                    \"name\": \"Bug\"\r\n\r\n                }\r\n\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issue/",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC02_Jira_Search_Issue_By_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario - returns details for that incident.\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Assertions - Incorrect credentails and not have viewer permission\r",
+							"//pm.test(\"Successful POST request\", function () {\r",
+							"// pm.expect(pm.response.code).to.be.oneOf([401,404]);\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issue/{{G_IncId}}",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{G_IncId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC03_Jira_Edit_Issue_By_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario - Server Processing request and not returning data.\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n   \"fields\": {\r\n\r\n \r\n\r\n       \"description\": \"Bug creation Using REST API for testing\"\r\n\r\n   }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issue/{{G_IncId}}",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{G_IncId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC04_Jira_Delete_Issue_By_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario - request processed successfully.\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"// Assertions - authentication error, permission ,deletion rights is not true.\r",
+							"//pm.test(\"Successful POST request\", function () {\r",
+							"//pm.expect(pm.response.code).to.be.oneOf([400,401,403,404]);\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issue/{{G_IncId}}",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{G_IncId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC05_Jira_Search _All_Issues_in_Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario -  If data retuned successfully\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Assertions - authentication error, incorrect Query\r",
+							"//pm.test(\"Successful POST request\", function () {\r",
+							"//pm.expect(pm.response.code).to.be.oneOf([400,401]);\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/search?JIR=project=”JiraTestManagement”",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"search"
+					],
+					"query": [
+						{
+							"key": "JIR",
+							"value": "project=”JiraTestManagement”"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC06_Jira_List_all_Issues",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario - returns data successfully.\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Assertion - Authentication incorrect.\r",
+							"//pm.test(\"Status code is 401\", function () {\r",
+							"//pm.response.to.have.status(401);\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issuetype",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC07_Jira_List_specific_issue_with_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion - Positive scenario - particular issuetype wrt ID\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Assertions - authentication error, Id not exists , issuetype not found.\r",
+							"\r",
+							"//pm.test(\"Successful POST request\", function () {\r",
+							"// pm.expect(pm.response.code).to.be.oneOf([400,401,404]);\r",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://team-16695292167150.atlassian.net/rest/api/2/issuetype/10007",
+					"protocol": "https",
+					"host": [
+						"team-16695292167150",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype",
+						"10007"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "9I1O2zrgAeRALw5vy2oF5BB5",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "viddhu.j@gmail.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

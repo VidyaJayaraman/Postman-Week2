@@ -1,0 +1,241 @@
+{
+	"id": "a743b8ad-8604-4652-8f50-0f8c78f74830",
+	"name": "Jira Project",
+	"timestamp": "2022-12-04T14:05:54.926Z",
+	"collection_id": "24504882-32bad65c-47ed-4052-8d44-23e9bcc9ad31",
+	"folder_id": 0,
+	"environment_id": "24504882-d54cf286-1bce-478f-b139-8f8d73f9a927",
+	"totalPass": 8,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "e42e984c-f267-40d5-a510-0d8dd68740f4",
+			"name": "TC01_Jira_Create_Issue",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issue/",
+			"time": 569,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				569
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "7d8b7949-eb51-4909-8c52-5abf1d60e307",
+			"name": "TC02_Jira_Search_Issue_By_Id",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issue/10027",
+			"time": 256,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				256
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f96bfa05-e809-405f-a630-ebc042d5c1ae",
+			"name": "TC03_Jira_Edit_Issue_By_Id",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issue/10027",
+			"time": 494,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				494
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "2b3adfe8-ec44-4020-a6e3-d77dc3655f8b",
+			"name": "TC04_Jira_Delete_Issue_By_Id",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issue/10027",
+			"time": 492,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				492
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "f02f39d4-70e9-4863-9a27-f1ff81ce28f4",
+			"name": "TC05_Jira_Search _All_Issues_in_Project",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/search?JIR=project=%E2%80%9DJiraTestManagement%E2%80%9D",
+			"time": 387,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				387
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "186d483c-94a1-4b63-b3ae-1bebc87cd614",
+			"name": "TC06_Jira_List_all_Issues",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issuetype",
+			"time": 92,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				92
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "5c6ad7d2-2681-4c45-b57d-c8e31a462b67",
+			"name": "TC07_Jira_List_specific_issue_with_Id",
+			"url": "https://team-16695292167150.atlassian.net/rest/api/2/issuetype/10007",
+			"time": 146,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				146
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2436,
+	"collection": {
+		"requests": [
+			{
+				"id": "e42e984c-f267-40d5-a510-0d8dd68740f4",
+				"method": "POST"
+			},
+			{
+				"id": "7d8b7949-eb51-4909-8c52-5abf1d60e307",
+				"method": "GET"
+			},
+			{
+				"id": "f96bfa05-e809-405f-a630-ebc042d5c1ae",
+				"method": "PUT"
+			},
+			{
+				"id": "2b3adfe8-ec44-4020-a6e3-d77dc3655f8b",
+				"method": "DELETE"
+			},
+			{
+				"id": "f02f39d4-70e9-4863-9a27-f1ff81ce28f4",
+				"method": "GET"
+			},
+			{
+				"id": "186d483c-94a1-4b63-b3ae-1bebc87cd614",
+				"method": "GET"
+			},
+			{
+				"id": "5c6ad7d2-2681-4c45-b57d-c8e31a462b67",
+				"method": "GET"
+			}
+		]
+	}
+}
